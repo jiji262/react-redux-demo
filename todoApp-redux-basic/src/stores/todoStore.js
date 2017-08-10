@@ -1,44 +1,21 @@
-import AppDispatcher from '../AppDispatcher';
-import { actionConstants, eventConstants } from '../AppConstants';
-import {EventEmitter} from 'events';
+import { actionConstants } from '../AppConstants';
+import {createStore} from 'redux';
 
 var _store = {
   list: []
 };
 
-var addItem = function(item){
-  _store.list.push(item);
-};
-
-var removeItem = function(index){
-  _store.list.splice(index, 1);
+var reducer = (state, action) => {
+  switch(action.type){
+    case actionConstants.ADD_ITEM:
+      return [...state, action.data];
+    case actionConstants.REMOVE_ITEM:
+      return state.filter((todo, index) =>
+        (index !== action.data));
+    default:
+      return state;
+  }
 }
 
-var todoStore = Object.assign({}, EventEmitter.prototype, {
-  addChangeListener: function(cb){
-    this.on(eventConstants.EVENT_CHANGE, cb);
-  },
-  removeChangeListener: function(cb){
-    this.removeListener(eventConstants.EVENT_CHANGE, cb);
-  },
-  getList: function(){
-    return _store.list;
-  },
-});
-
-AppDispatcher.register(function(action){
-  switch(action.actionType){
-    case actionConstants.ADD_ITEM:
-      addItem(action.data);
-      todoStore.emit(eventConstants.EVENT_CHANGE);
-      break;
-    case actionConstants.REMOVE_ITEM:
-      removeItem(action.data);
-      todoStore.emit(eventConstants.EVENT_CHANGE);
-      break;
-    default:
-      return true;
-  }
-});
-
+const todoStore = createStore(reducer, _store.list);
 export default todoStore;

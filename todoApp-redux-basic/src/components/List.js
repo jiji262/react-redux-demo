@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 export default class List extends Component {
   static defaultProps = {
@@ -7,10 +8,10 @@ export default class List extends Component {
   }
 
   static propTypes = {
-      items: React.PropTypes.array.isRequired,
-      remove: React.PropTypes.func.isRequired
+      items: PropTypes.array.isRequired,
+      remove: PropTypes.func.isRequired
   }
-  
+
   render = () => {
     var styles = {
       uList: {

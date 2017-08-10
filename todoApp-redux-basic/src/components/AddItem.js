@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 export default class AddItem extends Component {
   static defaultProps = {
@@ -6,9 +7,9 @@ export default class AddItem extends Component {
   }
 
   static propTypes = {
-      add: React.PropTypes.func.isRequired
+      add: PropTypes.func.isRequired
   }
-  
+
   handleSubmit = (e) => {
     if(e.keyCode === 13){
       var newItem = this.myTextInput.value;
