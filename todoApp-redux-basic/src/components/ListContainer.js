@@ -1,34 +1,38 @@
 import React, { Component } from 'react';
-import AddItem from './AddItem'; 
-import List from './List'; 
+import AddItem from './AddItem';
+import List from './List';
 import todoStore from '../stores/todoStore';
 import todoActions from '../actions/todoActions';
 
 export default class ListContainer extends Component {
   state = {
-    list: todoStore.getList()
+    list: todoStore.getState()
   }
 
   componentDidMount = () => {
-    todoStore.addChangeListener(this._onChange);
+    todoStore.subscribe(this._onChange);
   }
 
   componentWillUnmount = () => {
-    todoStore.removeChangeListener(this._onChange);
+    todoStore.unsubscribe(this._onChange);
   }
 
   handleAddItem = (newItem) => {
-    todoActions.addItem(newItem);
+    todoStore.dispatch(todoActions.addItem(newItem));
   }
 
   handleRemoveItem = (index) => {
-    todoActions.removeItem(index);
+    todoStore.dispatch(todoActions.removeItem(index));
+  }
+
+  getOwnState() {
+    return {
+      list: todoStore.getState()
+    };
   }
 
   _onChange = () => {
-    this.setState({
-      list: todoStore.getList()
-    })
+    this.setState(this.getOwnState());
   }
 
   render = () => {
