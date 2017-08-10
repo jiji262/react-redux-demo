@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import ListContainer from './components/ListContainer'
+import {Provider} from 'react-redux';
+import todoStore from './stores/todoStore';
 import logo from './logo.svg'
 import './App.css';
 
@@ -13,7 +15,9 @@ class App extends Component {
         </div>
         <div className="App-intro">
           <div className="row">
-            <ListContainer />
+            <Provider store={todoStore}>
+              <ListContainer/>
+            </Provider>
           </div>
         </div>
       </div>
