@@ -1,16 +1,16 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
+import React, { Component } from "react";
+import PropTypes from "prop-types";
 
 export default class List extends Component {
   static defaultProps = {
-          items: [],
-          remove: () => {}
-  }
+    items: [],
+    remove: () => {}
+  };
 
   static propTypes = {
-      items: PropTypes.array.isRequired,
-      remove: PropTypes.func.isRequired
-  }
+    items: PropTypes.array.isRequired,
+    remove: PropTypes.func.isRequired
+  };
 
   render = () => {
     var styles = {
@@ -19,7 +19,7 @@ export default class List extends Component {
         listStyleType: "none"
       },
       listGroup: {
-        margin: '5px 0',
+        margin: "5px 0",
         borderRadius: 5
       },
       removeItem: {
@@ -36,24 +36,26 @@ export default class List extends Component {
         fontSize: 17
       }
     };
-    var listItems = this.props.items.map(function(item, index){
-      return (
-        <li key={index} className="list-group-item" style={styles.listGroup}>
-          <span
-            className="glyphicon glyphicon-remove"
-            style={styles.removeItem}
-            onClick={this.props.remove.bind(null, index)}>
-          </span>
-          <span style={styles.todoItem}>
-            {item}
-          </span>
-        </li>
-      )
-    }.bind(this));
+    var listItems = this.props.items.map(
+      function(item, index) {
+        return (
+          <li key={index} className="list-group-item" style={styles.listGroup}>
+            <span
+              className="glyphicon glyphicon-remove"
+              style={styles.removeItem}
+              onClick={this.props.remove.bind(null, index)}
+            />
+            <span style={styles.todoItem}>
+              {item}
+            </span>
+          </li>
+        );
+      }.bind(this)
+    );
     return (
       <ul style={styles.uList}>
         {listItems}
       </ul>
-    )
-  }
-};
+    );
+  };
+}

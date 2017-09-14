@@ -1,18 +1,14 @@
-import { actionConstants } from '../AppConstants';
+import { ADD_ITEM, REMOVE_ITEM } from "../AppConstants";
 
 var todoActions = {
-  addItem: function(item){
-    return {
-      type: actionConstants.ADD_ITEM,
-      data: item
-    };
-  },
-  removeItem: function(index){
-    return {
-      type: actionConstants.REMOVE_ITEM,
-      data: index
-    };
-  }
-}
+  addItem: item => ({
+    type: ADD_ITEM,
+    payload: item
+  }),
+  removeItem: index => ({
+    type: REMOVE_ITEM,
+    payload: index
+  })
+};
 
-export default todoActions
+export default todoActions;

@@ -5,9 +5,7 @@ import todoStore from "../stores/todoStore";
 import todoActions from "../actions/todoActions";
 
 export default class ListContainer extends Component {
-  state = {
-    list: todoStore.getState()
-  };
+  state = todoStore.getState();
 
   componentDidMount = () => {
     todoStore.subscribe(this._onChange);
@@ -25,14 +23,8 @@ export default class ListContainer extends Component {
     todoStore.dispatch(todoActions.removeItem(index));
   };
 
-  getOwnState() {
-    return {
-      list: todoStore.getState()
-    };
-  }
-
   _onChange = () => {
-    this.setState(this.getOwnState());
+    this.setState(todoStore.getState());
   };
 
   render = () => {

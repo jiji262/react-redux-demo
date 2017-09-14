@@ -1,9 +1,9 @@
-import React, { Component } from 'react';
-import ListContainer from './components/ListContainer'
-import {Provider} from 'react-redux';
-import todoStore from './stores/todoStore';
-import logo from './logo.svg'
-import './App.css';
+import React, { Component } from "react";
+import ListContainer from "./components/ListContainer";
+import { Provider } from "react-redux";
+import todoStore from "./stores/todoStore";
+import logo from "./logo.svg";
+import "./App.css";
 
 class App extends Component {
   render() {
@@ -16,7 +16,7 @@ class App extends Component {
         <div className="App-intro">
           <div className="row">
             <Provider store={todoStore}>
-              <ListContainer/>
+              <ListContainer />
             </Provider>
           </div>
         </div>
