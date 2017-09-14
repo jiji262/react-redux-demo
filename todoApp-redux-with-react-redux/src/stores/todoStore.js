@@ -16,6 +16,9 @@ var reducer = (state, action) => {
       return state;
   }
 }
-
-const todoStore = createStore(reducer, _store.list);
+/* eslint-disable no-underscore-dangle */
+const todoStore = createStore(reducer, _store.list,
+  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+ );
+/* eslint-enable */
 export default todoStore;
